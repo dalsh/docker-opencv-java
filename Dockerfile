@@ -29,15 +29,15 @@ WORKDIR /home
 # install opencv
 RUN git clone https://github.com/opencv/opencv.git
 WORKDIR /home/opencv
-RUN git checkout 3.1 ; \
+RUN git checkout 3.1.0 ; \
     mkdir build
 WORKDIR /home/opencv/build
 RUN cmake -D WITH_QT=ON -D WITH_XINE=ON -D WITH_OPENGL=ON -D WITH_TBB=ON -D BUILD_EXAMPLES=ON .. ; \
     make -j8 & make install ; \
     echo '/usr/local/lib' >> /etc/ld.so.conf ; \
-    cp /home/opencv/build/lib/libopencv_java2411.so /usr/lib ; \
+    cp /home/opencv/build/lib/libopencv_java310.so /usr/lib ; \
     mkdir /home/javalibs ; \
-    cp /home/opencv/build/bin/opencv-2411.jar /home/javalibs/opencv-2411.jar
+    cp /home/opencv/build/bin/opencv-310.jar /home/javalibs/opencv-310.jar
 
 # install gradle
 RUN wget https://downloads.gradle.org/distributions/gradle-2.4-bin.zip ; \
