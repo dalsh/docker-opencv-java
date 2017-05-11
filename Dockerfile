@@ -19,17 +19,17 @@ ENV PATH $PATH:$JAVA_HOME/bin
 # install dependencies etc
 RUN apt-get update -y ; \
     apt-get install -y build-essential checkinstall cmake pkg-config yasm \
-    libtiff4-dev libjpeg-dev libjasper-dev libavcodec-dev libavformat-dev \
-    libswscale-dev libdc1394-22-dev libxine-dev libgstreamer0.10-dev \
+    libtiff5-dev libjpeg-dev libjasper-dev libavcodec-dev libavformat-dev \
+    libswscale-dev libdc1394-22-dev libxine2-dev libgstreamer0.10-dev \
     libgstreamer-plugins-base0.10-dev libv4l-dev libtbb-dev libqt4-dev libgtk2.0-dev \
     ant git unzip curl
 
 WORKDIR /home
 
 # install opencv
-RUN git clone https://github.com/Itseez/opencv.git
+RUN git clone https://github.com/opencv/opencv.git
 WORKDIR /home/opencv
-RUN git checkout 2.4.11 ; \
+RUN git checkout 3.1 ; \
     mkdir build
 WORKDIR /home/opencv/build
 RUN cmake -D WITH_QT=ON -D WITH_XINE=ON -D WITH_OPENGL=ON -D WITH_TBB=ON -D BUILD_EXAMPLES=ON .. ; \
