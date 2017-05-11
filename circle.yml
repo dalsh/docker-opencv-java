@@ -5,11 +5,11 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t dalsh/opencv-java:310 .
+    - docker build -t aplagnol/opencv-java:310 .
 
 deployment:
   hub:
     branch: master
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push dalsh/opencv-java:310
+      - docker push aplagnol/opencv-java:310

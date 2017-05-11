@@ -39,19 +39,5 @@ RUN cmake -D WITH_QT=ON -D WITH_XINE=ON -D WITH_OPENGL=ON -D WITH_TBB=ON -D BUIL
     mkdir /home/javalibs ; \
     cp /home/opencv/build/bin/opencv-310.jar /home/javalibs/opencv-310.jar
 
-# install gradle
-RUN wget https://downloads.gradle.org/distributions/gradle-2.4-bin.zip ; \
-    unzip gradle-2.4-bin.zip ; \
-    mv gradle-2.4 /usr/local/gradle ; \
-    rm gradle-2.4-bin.zip
-
-# add gradle to path
-ENV GRADLE_HOME /usr/local/gradle
-ENV PATH $PATH:$GRADLE_HOME/bin
-
-# gradle user home
-RUN mkdir -p /home/gradle
-ENV GRADLE_USER_HOME=/home/gradle
-
 # clean up after yourself
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
