@@ -3,20 +3,9 @@ machine:
     - docker
 
 dependencies:
-  cache_directories:
-    - "~/docker"
   override:
     - docker info
-    - if [[ -e ~/docker/image.tar ]]; then docker load -i ~/docker/image.tar; fi
     - docker build -t dalsh/opencv-java:310 .
-    - CONTAINERID=$(docker run -d dalsh/opencv-java:310 /bin/bash -c)
-    - mkdir -p ~/docker; docker save dalsh/opencv-java:310 > ~/docker/image.tar
-
-test:
-  override:
-    - docker run dalsh/opencv-java:310 /home/opencv/build/bin/opencv_test_core
-  post:
-    - docker cp $CONTAINERID:/home/javalibs $CIRCLE_ARTIFACTS
 
 deployment:
   hub:
